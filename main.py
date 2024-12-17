@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from server import db
+from routes.user_routes import user_router
+from db.connection import db  # Import the db object
 
 app = FastAPI()
 
@@ -17,3 +18,6 @@ async def test_db_connection():
         return {"database": db.name, "collections": collections}
     except Exception as e:
         return {"error": str(e)}
+
+# Register user routes
+app.include_router(user_router, prefix="/users", tags=["Users"])

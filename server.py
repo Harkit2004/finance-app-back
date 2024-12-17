@@ -1,12 +1,7 @@
-from db.connection import client
-from dotenv import load_dotenv
+from db.connection import db
 import os
-load_dotenv()
 
-# Define the database
-db = client[os.getenv('DATABASE_NAME')]
-
-# Helper to test the connection
+# Helper to test the database connection
 def test_database_connection():
     try:
         # Check if the connection works by listing collections
@@ -16,6 +11,6 @@ def test_database_connection():
     except Exception as e:
         print("Failed to connect to the database:", e)
 
-# Run the test when the script is executed directly
+# Optionally run the test when this script is executed directly
 if __name__ == "__main__":
     test_database_connection()
